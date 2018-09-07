@@ -25,7 +25,7 @@ site.
 
 ## Install
 
-Install httpmi from pip.
+Install httpmi via pip.
 
 TODO insert more words about virtualenvs and such.
 
