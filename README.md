@@ -25,13 +25,20 @@ site.
 
 ## Install
 
-Install httpmi via pip.
+Install httpmi via pip. As it isn't currently on PyPI, just clone the
+repository and run `pip install .` from the root.
 
-TODO insert more words about virtualenvs and such.
+We recommend running the app with uWSGI, which looks something like::
+
+    $ uwsgi --http 127.0.0.1:5000 --wsgi httpmi.api --callable app --master
+
+For whatever reason, this doesn't currently work from inside the repository,
+so `cd` somewhere else first.
 
 ## Configuration
 
-TODO some words about fronting with a web server providing TLS and such.
+httpmi currently has no configuration options. This is left to the web
+server in front of httpmi.
 
 ## Usage
 
