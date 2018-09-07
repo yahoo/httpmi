@@ -20,3 +20,11 @@ def set_power(credentials, state):
         # for now, just return the pending state
         # consider adding an optional wait here, to wait for the actual change
         return res['pendingpowerstate']
+
+
+# TODO ironic also supports:
+# reboot (off then on)
+# get boot device
+# set boot device
+# get sensors data
+# inject nmi
