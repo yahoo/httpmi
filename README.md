@@ -42,7 +42,25 @@ server in front of httpmi.
 
 ## Usage
 
-TODO quick API overview here.
+Every API call uses form data for command parameters and credentials. Every
+API call must pass the BMC IP address and credentials in the keys
+`bmc`, `user`, and `password`. Some API calls have additional parameters.
+
+* `GET /power` - returns the current power state of the machine. No additional
+  parameters required. Example response:
+
+      {"state": "on"}
+
+  Response value may be "on" or "off".
+
+* `POST /power` - set the power state for the machine. Returns immediately with
+  the pending power state of the machine if it is changing, or the current
+  state if the machine is already in the requested state. Takes one parameter,
+  "state", which may be "on" or "off". Example response:
+
+      {"state": "on"}
+
+  Response value may be "on" or "off".
 
 ## Security
 
