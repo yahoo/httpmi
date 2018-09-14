@@ -10,9 +10,7 @@ locations more securely.
 
 - [Background](#background)
 - [Install](#install)
-- [Configuration](#configuration)
 - [Usage](#usage)
-- [Security](#security)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -35,11 +33,6 @@ We recommend running the app with uWSGI, which looks something like::
 For whatever reason, this doesn't currently work from inside the repository,
 so `cd` somewhere else first.
 
-## Configuration
-
-httpmi currently has no configuration options. This is left to the web
-server in front of httpmi.
-
 ## Usage
 
 Every API call uses form data for command parameters and credentials. Every
@@ -61,10 +54,6 @@ API call must pass the BMC IP address and credentials in the keys
       {"state": "on"}
 
   Response value may be "on" or "off".
-
-## Security
-
-TODO some words about securing the httpmi host and communication here.
 
 ## Contribute
 
