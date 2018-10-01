@@ -27,3 +27,13 @@ def power():
     # TODO(jroll) add a wait parameter here or make it feel like real IPMI?
     new_state = request.form['state']
     return jsonify({'state': ipmi.set_power(creds, new_state)})
+
+
+@app.route('/boot-device', methods=['GET', 'POST'])
+def boot_device():
+    creds = _get_bmc_credentials()
+    if request.method == 'GET':
+        return jsonify({'device': ipmi.get_boot_device(creds)})
+
+    new_device = request.form['device']
+    return jsonify({'device': ipmi.set_boot_device(creds, new_device)})

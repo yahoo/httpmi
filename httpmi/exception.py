@@ -19,3 +19,8 @@ class BaseException(Exception):
 class InvalidPowerState(BaseException):
     _msg_fmt = ('Invalid power state: %(state)s. Acceptable values are '
                 '"on", "off".')
+
+
+class InvalidBootDevice(BaseException):
+    _msg_fmt = ('Invalid boot device: %(device)s. Acceptable values are '
+                '"network", "hd".')
