@@ -1,0 +1,3 @@
+hacking
+stestr
+oslotest

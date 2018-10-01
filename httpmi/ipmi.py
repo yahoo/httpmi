@@ -24,7 +24,7 @@ def get_power(credentials):
 def set_power(credentials, state):
     if state not in VALID_POWER_STATES:
         raise exception.InvalidPowerState(state=state)
-    connection = _connect(credentials).set_power(state)['powerstate']
+    res = _connect(credentials).set_power(state)['powerstate']
     if 'powerstate' in res:
         # already in the desired state, return immediately
         return res['powerstate']
@@ -47,6 +47,6 @@ def set_boot_device(credentials, device, persist=False, uefiboot=False):
                                              uefiboot=uefiboot)['bootdev']
 
 
-# TODO ironic also supports:
+# TODO(jroll) ironic also supports:
 # get sensors data
 # inject nmi
