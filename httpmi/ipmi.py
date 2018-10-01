@@ -8,6 +8,7 @@ from httpmi import exception
 
 
 VALID_POWER_STATES = ('on', 'off')
+VALID_BOOT_DEVICES = ('network', 'hd')
 
 
 def _connect(credentials):
@@ -22,7 +23,7 @@ def get_power(credentials):
 
 def set_power(credentials, state):
     if state not in VALID_POWER_STATES:
-        raise exception.InvalidPowerState(state)
+        raise exception.InvalidPowerState(state=state)
     connection = _connect(credentials).set_power(state)['powerstate']
     if 'powerstate' in res:
         # already in the desired state, return immediately
@@ -33,9 +34,19 @@ def set_power(credentials, state):
         return res['pendingpowerstate']
 
 
+def get_boot_device(credentials):
+    data = _connect(credentials).get_bootdev()
+    return data['bootdev']
+
+
+def set_boot_device(credentials, device, persist=False, uefiboot=False):
+    if device not in VALID_BOOT_DEVICES:
+        raise exception.InvalidBootDevice(device=device)
+    return _connect(credentials).set_bootdev(device,
+                                             persist=persist,
+                                             uefiboot=uefiboot)['bootdev']
+
+
 # TODO ironic also supports:
-# reboot (off then on)
-# get boot device
-# set boot device
 # get sensors data
 # inject nmi
