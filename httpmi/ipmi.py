@@ -1,5 +1,10 @@
 from pyghmi.ipmi import command
 
+from httpmi import exception
+
+
+VALID_POWER_STATES = ('on', 'off')
+
 
 def _connect(credentials):
     return command.Command(bmc=credentials['bmc'],
@@ -12,7 +17,9 @@ def get_power(credentials):
 
 
 def set_power(credentials, state):
-    res = _connect(credentials).set_power()['powerstate']
+    if state not in VALID_POWER_STATES:
+        raise exception.InvalidPowerState(state)
+    connection = _connect(credentials).set_power(state)['powerstate']
     if 'powerstate' in res:
         # already in the desired state, return immediately
         return res['powerstate']
