@@ -1,6 +1,8 @@
 # httpmi
 > An HTTP proxy for IPMI commands.
 
+[![Build Status](https://travis-ci.org/yahoo/httpmi.svg?branch=master)](https://travis-ci.org/yahoo/httpmi)
+
 IPMI is an unencrypted protocol that works over UDP. httpmi provides an
 HTTP proxy to arbitrary IPMI hosts, as securing HTTP is well-understood. This
 provides infrastructure operators the ability to perform IPMI control between
