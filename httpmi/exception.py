@@ -2,6 +2,7 @@
 # Licensed under the terms of the Apache 2.0 license. See LICENSE file in
 # https://github.com/yahoo/httpmi
 
+
 class BaseException(Exception):
     _msg_fmt = 'An unknown error occurred.'
 
