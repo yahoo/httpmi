@@ -13,6 +13,7 @@ VALID_BOOT_DEVICES = ('network', 'hd')
 
 def _connect(credentials):
     return command.Command(bmc=credentials['bmc'],
+                           port=int(credentials.get('port', 623)),
                            userid=credentials['user'],
                            password=credentials['password'])
 
@@ -24,7 +25,7 @@ def get_power(credentials):
 def set_power(credentials, state):
     if state not in VALID_POWER_STATES:
         raise exception.InvalidPowerState(state=state)
-    res = _connect(credentials).set_power(state)['powerstate']
+    res = _connect(credentials).set_power(state)
     if 'powerstate' in res:
         # already in the desired state, return immediately
         return res['powerstate']

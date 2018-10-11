@@ -57,6 +57,38 @@ API call must pass the BMC IP address and credentials in the keys
 
   Response value may be "on" or "off".
 
+Some examples in curl::
+
+    $ curl -X POST \
+           --form user=admin --form password=password \
+           --form bmc=10.88.209.247 --form port=6230
+           --form state=off \
+           http://localhost:5000/power
+
+    {"state":"off"}
+
+    $ curl -X GET \
+           --form user=admin --form password=password \
+           --form bmc=10.88.209.247 --form port=6230 \
+           http://localhost:5000/power
+
+    {"state":"off"}
+
+    $ curl -X POST \
+           --form user=admin --form password=password \
+           --form bmc=10.88.209.247 --form port=6230 \
+           --form device=hd \
+           http://localhost:5000/boot-device
+
+    {"device":"hd"}
+
+    $ curl -X GET \
+           --form user=admin --form password=password \
+           --form bmc=10.88.209.247 --form port=6230 \
+           http://localhost:5000/boot-device
+
+    {"device":"hd"}
+
 ## Contribute
 
 Please refer to [the contributing.md file](Contributing.md) for information
