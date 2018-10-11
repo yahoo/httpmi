@@ -11,11 +11,17 @@ from httpmi import ipmi
 
 app = Flask(__name__)
 
-CREDS_KEYS = ['bmc', 'user', 'password']
+CREDS_KEYS = ('bmc', 'user', 'password')
+CREDS_OPTIONAL_KEYS = ('port',)
 
 
 def _get_bmc_credentials():
-    return {k: request.form[k] for k in CREDS_KEYS}
+    creds = {k: request.form[k] for k in CREDS_KEYS}
+    for key in CREDS_OPTIONAL_KEYS:
+        val = request.form.get(key)
+        if val:
+            creds[key] = val
+    return creds
 
 
 @app.route('/power', methods=['GET', 'POST'])

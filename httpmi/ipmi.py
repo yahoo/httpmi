@@ -13,6 +13,7 @@ VALID_BOOT_DEVICES = ('network', 'hd')
 
 def _connect(credentials):
     return command.Command(bmc=credentials['bmc'],
+                           port=int(credentials.get('port', 623)),
                            userid=credentials['user'],
                            password=credentials['password'])
 
